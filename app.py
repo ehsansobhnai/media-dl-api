@@ -127,7 +127,7 @@ def run_download(job_id, request):
         if file.stat().st_size > MAX_BYTES:
             raise RuntimeError('Output exceeds the file size limit')
         with lock:
-            jobs[job_id].update(status='ready', path=file, size=file.stat().st_size(), completed=time.time())
+            jobs[job_id].update(status='ready', path=file, size=file.stat().st_size, completed=time.time())
     except Exception as exc:
         if proc:
             stop_process(proc)
